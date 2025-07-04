@@ -18,7 +18,6 @@ public class LoginTest {
         driver.get("https://opensource-demo.orangehrmlive.com/");
         driver.manage().window().maximize();
 
-        // Wait until username field is visible
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
         username.sendKeys("Admin");
@@ -29,7 +28,6 @@ public class LoginTest {
         WebElement loginBtn = driver.findElement(By.cssSelector("button[type='submit']"));
         loginBtn.click();
 
-        // Wait and verify login
         try {
             WebElement dashboard = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h6[text()='Dashboard']")));
             if (dashboard.isDisplayed()) {
