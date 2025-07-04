@@ -15,11 +15,9 @@ public class SearchTest {
         WebDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        // Step 1: Open OrangeHRM
         driver.get("https://opensource-demo.orangehrmlive.com/");
         driver.manage().window().maximize();
 
-        // Step 2: Login
         WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
         username.sendKeys("Admin");
 
@@ -29,19 +27,15 @@ public class SearchTest {
         WebElement loginBtn = driver.findElement(By.cssSelector("button[type='submit']"));
         loginBtn.click();
 
-        // Step 3: Go to PIM
         WebElement pimMenu = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='PIM']")));
         pimMenu.click();
 
-        // Step 4: Search for "Linda"
         WebElement nameInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Type for hints...']")));
         nameInput.sendKeys("Linda");
 
-        // Step 5: Click Search
         WebElement searchBtn = driver.findElement(By.xpath("//button[@type='submit']"));
         searchBtn.click();
 
-        // Step 6: Verify search result
         try {
             WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='row']//div[text()='Linda']")));
             if (result.isDisplayed()) {
